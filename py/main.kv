@@ -1,0 +1,23 @@
+<MenuScreen>:
+    canvas.before:
+        Color:
+            rgba: rgba("#2057EE")
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        spracing: '20dp'
+        Label:
+            id: title_game
+            text: 'Cosmos Adventure'
+            color: "#EE6C26"
+            font_name: 'assets/OleoScript-Bold.ttf'
+            font_size: '30dp'
+            size_hint_y: .2
+    Image:
+        source: 'assets/images/cat.png'
+        size_hint_y: .3
+        allow_Stretch: True
