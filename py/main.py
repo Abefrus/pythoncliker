@@ -5,14 +5,22 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 from kivy.utils import platform
+from kivy.properties import StringProperty
 
 class MenuScreen(Screen):
   def __init__(self, **kwargs):
     super().__init__(**kwargs)
 
 class GameScreen(Screen):
+  c_click = StringProperty()
   def __init__(self, **kwargs):
     super().__init__(**kwargs)
+    self.c_click = '0'
+
+  def clicker(self):
+    self.c_click = str(int(self.c_click) +1)
+    
+
 
 class MainApp(App):
   def build(self):
