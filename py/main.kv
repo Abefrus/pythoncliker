@@ -1,10 +1,23 @@
-<MenuScreen>:
+#: set main_color rgba("#2057EE")
+#: set color_button "#FFB41F"
+
+<ButtonMenu@Button>
+    color: 
+    font_size: '20dp'
+    font_name: 'assets/OleoScript-Bold.ttf'
+    size_hint_y: 0.2
+    background_color: "#FFB41F"
+    background_down:''
+
+<Screen, ScreenManager>
     canvas.before:
         Color:
-            rgba: rgba("#2057EE")
+            rgba: main_color
         Rectangle:
             pos: self.pos
-            size: self.size  
+            size: self.size
+
+<MenuScreen>:  
     BoxLayout:
         orientation: 'vertical'
         padding: '20dp'
@@ -12,59 +25,46 @@
         Label:
             id: title_game
             text: 'Burn The Witch'
-            color: "#EE6C26"
-            font_name: 'assets/OleoScript-Bold.ttf'
-            font_size: '30dp'
-            size_hint_y: .2
         Image:
             source: 'assets/images/inquisitor.png'
             size_hint_y: .3
             allow_Stretch: True        
-        Button: 
+        ButtonMenu: 
             text: "Play"
-            background_color: "#FFB41F"
-            background_normal: ""
-            background_down: ''
-            size_hint_y: .10     
             on_release: root.manager.current = "game"
-        Button: 
+        ButtonMenu: 
             text: "Settings"
-            background_color: "#FFB41F"
-            background_normal: ""
-            background_down: ''
-            size_hint_y: .10
-        
    
 <GameScreen>
-    BoxLayout:
+    BoxLayout:  
         padding: '20dp'
         spacing: '20dp'
         orientation: 'vertical'
         BoxLayout:
             orientation: 'vertical'
-            size_hint_y: 0.1
-            Button:
+            size_hint_y: .1
+            ButtonMenu:
                 text: "X"
-                size_hint_y: 0.05
-                size_hint_x: 0.1
-                pos_hint: {"x":0.03, "top": 1} 
+                size_hint_y: .05
+                size_hint_x: .2
+                pos_hint: {"x":.03, "top": 1} 
                 on_press: root.manager.current = 'menu'
-        BoxLayout:
-            orientation: 'vertical'
-            size_hint_y: 0.80
             Label:
                 id: 'result'
-                text: root.c_click
-            Button:
-                # background_color: 'assets/images/witch.png'
-                on_press: self.size_hint_y = 0.7; self.size_hint_x = 0.7
-                on_release: self.size_hint_y = 0.8; self.size_hint_x = 0.8
-                on_press: root.clicker()
+                text: "score: " + str(root.points)
+                font_size: "40dp"
+                color: "#FFB41F"
+        FloatLayout:
+            orientation: 'vertical'
+            size_hint_y: .8
+            Witch:
+                id: witch
         BoxLayout:
-            size_hint_y: 0.10
-
-
-# Image:
-#                 source: 'assets/images/witch.png'
-#                 on_press: self.size_hint_y = 0.1
-#                 on_release: self.size_hint_y = 0.5
+            size_hint_y: .10
+    
+<Witch>:
+    allow_Stretch: True
+    size_hint: None,None
+    center: self.parent.center
+    size: '200dp' ,'200dp'
+    source: 'assets/images/witch.png'
